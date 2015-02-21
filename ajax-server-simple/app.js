@@ -13,10 +13,12 @@ app.get('/', function (req, res) {
 });
 
 app.get('/chat', function (req, res) {
+  res.set("Access-Control-Allow-Origin", "*");
   res.sendFile(__dirname + '/chat.html');
 });
 
 app.get('/getjson', function (req, res) {
+  res.set("Access-Control-Allow-Origin", "*");
   res.send(messageData);
 });
 
@@ -33,6 +35,7 @@ app.post('/post', function (req, res) {
 
   messageData.push(chatMsg);
 
+  res.set("Access-Control-Allow-Origin", "*");
   res.send(req.query);
 });
 
@@ -48,6 +51,7 @@ app.get('/post', function (req, res) {
 
   messageData.push(chatMsg);
 
+  res.set("Access-Control-Allow-Origin", "*");
   res.send(req.query);
 });
 
@@ -64,6 +68,7 @@ app.get('/list', function (req, res) {
     data += "&lt;" + messageData[i].name + "&gt; " + messageData[i].message + "<br/>"; 
   }
 
+  res.set("Access-Control-Allow-Origin", "*");
   res.send(header + data + footer);
 
 });

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="http://code.jquery.com/jquery-2.1.3.js"></script>
+  <style type="text/css">
+    .button {
+      border: 2px black solid;
+    }
+  </style>
+  <meta charset="utf-8">
+  <title>DevLeague Chat v0.1</title>
+</head>
+<body>
+  <form>
+    <p>
+      Server: <input id='ip' name='ip' type="text" value="localhost:3000">
+    </p> 
+    <p>
+      Your Name: <input id='name' name="name" type="text">
+    </p> 
+    <p>
+      Message: <input id='message' name="message" type="text" size="100">
+    </p> 
+
+    <p>
+      Send message via: 
+      <span class="button" id="btn_ajax">ajax()</span>
+      <span class="button" id="btn_get">get()</span>
+      <span class="button" id="btn_json">getJSON()</span>
+      <span class="button" id="btn_post">post()</span>    
+      <span class="button" id="btn_load">Get messages</span>
+    </p>
+    <ul id="messages">
+    </ul>
+  </form>
+
+  <script>
+    $(document).ready(function() {
+      $('#ip').val(window.location.host);
+
+      $('#btn_post').click(
+        function(event) {      
+          var name = $('#name').val();
+          var message = $('#message').val();
+          var url = 'http://' + $('#ip').val() + '/post';
+
+          alert(url);
+
+          var data = {
+            name: name,
+            message: message
+          };
+
+          $.post(
+            url,
+            data,
+            function() { alert('success\!'); }
+            ); 
+        }
+      );
+
+      $('#btn_load').click(
+        function(event) {
+          var url = 'http://' + $('#ip').val() + '/getjson';
+
+          alert(url);
+
+          $.getJSON(
+            url,
+            "",
+            function(data, status) { 
+              alert(status);
+              var i;
+
+              $('li').remove();
+
+              var ul = $('#messages');
+              for(i=0; i < data.length; i++) {
+                ul.append( $('<li>').html(
+                  "&lt;" + data[i].name + "&gt; " +
+                  data[i].message
+                  ) );
+              }
+            }
+          ); 
+        }
+      );
+
+      $('#btn_ajax').click(
+        function(event) {
+          var name = $('#name').val();
+          var message = $('#message').val();
+          var url = 'http://' + $('#ip').val() + '/post';
+
+          alert(url);
+
+          var data = {
+            name: name,
+            message: message
+          };
+
+          $.ajax(
+            url,
+            { data: data,
+              success: function() { alert('success\!'); }
+            }
+          );
+        }
+        );
+      $('#btn_get').click(
+        function(event) {
+          var name = $('#name').val();
+          var message = $('#message').val();
+          var url = 'http://' + $('#ip').val() + '/post';
+
+          alert(url);
+
+          var data = {
+            name: name,
+            message: message
+          };
+
+          $.get(
+            url,
+            data,
+            function() { alert('success\!'); }
+          );
+        }
+      );
+      $('#btn_json').click(
+        function(event) {
+          var name = $('#name').val();
+          var message = $('#message').val();
+          var url = 'http://' + $('#ip').val() + '/post';
+
+          alert(url);
+
+          var data = {
+            name: name,
+            message: message
+          };
+
+          $.getJSON(
+            url,
+            data,
+            function() { alert('success\!'); }
+            ); 
+        }
+      );
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+explain async IO
+  why it is necessary:
+    a webpage load time (30-100ms) may seem fast but many CPU instructions can be done in the meantime
+
+    async 
+
+    average responsive limit of a human before wondering if computer froze:
+
+  analogies: physical mail, getting an ID/driver's license, 
+
+
+
+explain its uses
+
+explain XML
+
+
+jQuery.ajax()
+jQuery.get()
+jQuery.getJSON()
+shorthand for .ajax, with dataType: "json"
+
+jQuery.post()

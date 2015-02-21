@@ -38,6 +38,7 @@
     $(document).ready(function() {
       $('#ip').val(window.location.host);
 
+      // submit chat message via a .post jquery call
       $('#btn_post').click(
         function(event) {      
           var name = $('#name').val();
@@ -51,12 +52,14 @@
             message: message
           };
 
+          // $.post(url, data, callback_function() );
           $.post(
             // fill in the parameters here
           ); 
         }
       );
 
+      // retrieve list of messages from server using get callback
       $('#btn_load').click(
         function(event) {
           var url = 'http://' + $('#ip').val() + '/getjson';
@@ -78,12 +81,15 @@
             }
           }
 
+          // $.getJSON( url, data, callback_function() );
+          // use processData() function as callback to update page
           $.getJSON(
             // fill in the parameters here
           ); 
         }
       );
 
+      // submit chat message via an .ajax jquery call
       $('#btn_ajax').click(
         function(event) {
           var name = $('#name').val();
@@ -97,11 +103,14 @@
             message: message
           };
 
+          // $.ajax(url, { data: data, success: function() });
           $.ajax(
               // fill in the parameters here
           );
         }
-        );
+      );
+
+      // submit chat message via a get jquery call
       $('#btn_get').click(
         function(event) {
           var name = $('#name').val();
@@ -115,11 +124,14 @@
             message: message
           };
 
+          // $.get( url, data, callback_function() );
           $.get(
             // fill in the parameters here
           );
         }
       );
+
+      // submit chat message via a getJSON jquery call
       $('#btn_json').click(
         function(event) {
           var name = $('#name').val();
@@ -133,6 +145,7 @@
             message: message
           };
 
+          // $.getJSON( url, data, callback_function() );
           $.getJSON(
               // fill in the parameters here
             ); 

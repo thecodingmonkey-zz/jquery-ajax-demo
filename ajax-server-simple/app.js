@@ -65,7 +65,7 @@ app.get('/list', function (req, res) {
   var i;
 
   for(i=messageData.length-1; i >= 0; i--) {
-    data += "&lt;" + messageData[i].name + "&gt; " + messageData[i].message + "<br/>"; 
+    data += "&lt;" + messageData[i].name + "&gt; " + messageData[i].message.substr(0,200) + "<br/>"; 
   }
 
   res.set("Access-Control-Allow-Origin", "*");

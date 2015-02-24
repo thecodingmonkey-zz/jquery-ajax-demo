@@ -1,5 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var escape = require('escape-html');
 
 var app = express();
 
@@ -42,7 +43,13 @@ app.post('/post', function (req, res) {
 app.get('/post', function (req, res) {
   var name, msg;
   name = req.query.name;
+//  msg = querystring.escape(req.query.message);
   msg = req.query.message;
+  msg = escape(req.query.message);
+
+  // if (msg.indexOf('script') != -1) {
+  //   return;
+  // }
 
   var chatMsg = {
     name: name,
